@@ -19,7 +19,7 @@ const HomeScreen = ({ navigation }) => {
     const [query, setQuery] = useState("");
     const [searchTimeout, setSearchTimeout] = useState(null);
 
-    const fetchPosts = () => {
+    const fetchAccounts = () => {
         setIsLoading(true);
         let endpoint = "/accounts/";
 
@@ -44,16 +44,13 @@ const HomeScreen = ({ navigation }) => {
         if (searchTimeout) {
             clearTimeout(searchTimeout);
         }
+        fetchAccounts();
 
-        // Устанавливаем новый таймаут для выполнения поиска
-        const timeoutId = setTimeout(fetchPosts, 300);
-        setSearchTimeout(timeoutId);
-
-        // Очищаем таймаут при каждом изменении query
-        return () => clearTimeout(timeoutId);
+        setSearchTimeout(null);
     }, [query]);
 
-    useEffect(fetchPosts, []); // Вызываем fetchPosts при загрузке компонента
+
+    useEffect(fetchAccounts, []);
 
     if (isLoading) {
         return <Loading />;
@@ -71,7 +68,7 @@ const HomeScreen = ({ navigation }) => {
             <FlatList
                 contentContainerStyle={styles.mainContainer}
                 refreshControl={
-                    <RefreshControl refreshing={isLoading} onRefresh={fetchPosts} />
+                    <RefreshControl refreshing={isLoading} onRefresh={fetchAccounts} />
                 }
                 data={items}
                 renderItem={({ item }) => (
