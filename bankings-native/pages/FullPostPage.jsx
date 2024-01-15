@@ -70,8 +70,7 @@ const FullPostScreen = ({ route, navigation }) => {
         );
     }
 
-    // Теперь безопасно обращаемся к свойствам
-    const accountImage = `http://192.168.4.33:8000/api/icon/${data.type}/`;
+    const accountImage = `http://172.20.10.3:8000/api/icon/${data.type}/`;
 
     const getCurrencySymbol = (currencyCode) => {
         switch (currencyCode) {

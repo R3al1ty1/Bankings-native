@@ -3,7 +3,7 @@ import React from "react";
 import { View, Text, Image, TouchableOpacity } from "react-native";
 
 const Post = ({ navigation, type, name, account, id }) => {
-    const accountImage = `http://192.168.4.33:8000/api/icon/${type}/`;
+    const accountImage = `http://172.20.10.3:8000/api/icon/${type}/`;
 
     return (
         <PostView>
